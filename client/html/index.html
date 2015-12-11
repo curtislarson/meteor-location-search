@@ -1,0 +1,49 @@
+<template name="index">
+  <div class="container">
+    <div class="row medium-margin">
+      {{#autoForm schema=jobSchema id="addJob" type="method" meteormethod="addJob"}}
+        <div class="col-md-4">
+          {{> afQuickField name="title"}}
+        </div>
+        <div class="col-md-4">
+          {{#if googleMapsReady}}
+            {{> afQuickField name="location" type="googleplace" class="form-control" autocomplete="off"}}
+          {{/if}}
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-default">Add Job</button>
+        </div>
+      {{/autoForm}}
+    </div>
+    <div class="row medium-margin">
+      {{#autoForm schema=searchSchema id="searchJob" type="normal"}}
+      <div class="col-md-4">
+        {{#if googleMapsReady}}
+          {{> afQuickField name="location" type="googleplace" class="form-control" autocomplete="off"}}
+        {{/if}}
+      </div>
+      <div class="col-md-4">
+        {{> afQuickField name="radius"}}
+      </div>
+      <div class="col-md-4">
+        <button type="submit" class="btn btn-default">Search</button>
+      </div>
+      {{/autoForm}}
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        {{#each jobs}}
+          <div class="row">
+            <h4>Job Title: {{title}} | Address: {{location.fullAddress}}</h4>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="searchMapContainer">
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
