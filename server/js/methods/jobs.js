@@ -1,6 +1,6 @@
 Meteor.methods({
   addJob: function(job) {
-    console.log("job=", job);
+    check(job, Schemas.Job);
     Jobs.insert(job);
   }
 });

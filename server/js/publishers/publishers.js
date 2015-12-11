@@ -3,8 +3,6 @@ Meteor.publish("jobSearch", function(searchData) {
     return [];
   }
 
-  console.log("s=", searchData);
-
   var radius = searchData.radius;
   var centerLat = searchData.location.lat;
   var centerLon = searchData.location.lng;
@@ -21,8 +19,6 @@ Meteor.publish("jobSearch", function(searchData) {
       }
     }
   };
-
-  console.log("selector=", selector);
 
   return Jobs.find(selector);
 });
